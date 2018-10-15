@@ -8,6 +8,7 @@
 *.sln.docstates
 
 FrontEnd/node_modules/*
+FrontEnd/dist/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
