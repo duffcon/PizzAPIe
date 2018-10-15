@@ -6,40 +6,44 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PizzAPIe.Controllers
 {
+
+    public class Data
+    {
+        public string Item1 { get; set; }
+        public int Item2 { get; set; }
+
+    }
+
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
+       
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult <IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] IEnumerable<string> value)
         {
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // GET api/values/Class
+        [HttpGet("Class")]
+        public Data GetClass()
+        {
+            return new Data { Item1 = "string", Item2 = 9 };
+        }
+
+        // POST api/values/Class
+        [HttpPost("Class")]
+        public void Post([FromBody] Data d)
         {
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
