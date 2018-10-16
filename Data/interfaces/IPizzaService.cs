@@ -9,7 +9,7 @@ namespace PizzAPIe.Data.interfaces
     public interface IPizzaService
     {
         PizzaOptions GetOptions { get; }
-        bool NewOrder(Order order);
+        int? NewOrder(Order order);
         Order GetOrder(int orderNumber, string phone);
     }
 }

@@ -21,5 +21,9 @@ export class ApiService {
 	sendOrder(order) {
 		return this.http.post(this.BASE_URL + "/api/Order/New", order);
 	}
+
+	getOrder(order) {
+		return this.http.post(this.BASE_URL + "/api/Order/Order", order);
+	}
  
 }

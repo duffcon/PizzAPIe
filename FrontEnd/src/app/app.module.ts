@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ApiService } from './api.service';
@@ -11,12 +11,15 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
+import { TrackComponent } from './track/track.component';
 
 
 const appRoutes: Routes =
   [
     { path: 'home', component: HomeComponent },
-    { path: 'order', component: OrderComponent },
+	{ path: 'order', component: OrderComponent },
+	{ path: 'track', component: TrackComponent },
+
     { path: '**', component: HomeComponent }
   ];
 
@@ -25,7 +28,8 @@ const appRoutes: Routes =
     AppComponent,
     NavComponent,
     HomeComponent,
-    OrderComponent
+    OrderComponent,
+    TrackComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,7 @@ const appRoutes: Routes =
 	RouterModule.forRoot(appRoutes),
 	FormsModule,
 	ReactiveFormsModule
+
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

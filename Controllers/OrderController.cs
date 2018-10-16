@@ -9,6 +9,7 @@ using PizzAPIe.Data.Models;
 
 namespace PizzAPIe.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -28,11 +29,21 @@ namespace PizzAPIe.Controllers
         }
 
 
-        // Post: api/Order/New
+        // POST: api/Order/New
         [HttpPost("New")]
-        public bool Post([FromBody] Order order)
+        public int? Post([FromBody] Order order)
         {
-            return pizzaService.NewOrder(order);
+            var ordernumber = pizzaService.NewOrder(order);
+            return ordernumber;
+        }
+
+
+        // POST: api/Order/Order
+        [HttpPost("Order")]
+        public Order GetOrder([FromBody] Order order)
+        {
+            var neworder = pizzaService.GetOrder(order.OrderNumber, order.Phone);
+            return neworder;
         }
     }
 }

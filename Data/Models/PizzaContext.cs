@@ -10,11 +10,16 @@ namespace PizzAPIe.Data.Models
     {
         public PizzaContext(DbContextOptions<PizzaContext> options) : base(options)
         {
+           
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>()
                 .HasKey(o => o.OrderNumber);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Size);
+                
 
             modelBuilder.HasSequence<int>("NextOrderNumber", schema: "dbo")
                 .StartsAt(1000)

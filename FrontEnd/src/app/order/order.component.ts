@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TrackComponent } from '../track/track.component';
 
 @Component({
   selector: 'app-order',
@@ -13,7 +15,7 @@ export class OrderComponent implements OnInit {
 	private submitted = false;
 	private price: number = 0;
 
-	constructor(private formBuilder: FormBuilder, private api: ApiService) {
+	constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router) {
 	}
 
 	ngOnInit() {
@@ -27,6 +29,7 @@ export class OrderComponent implements OnInit {
 			topping: ['', [Validators.required]],
 			quantity: [1, [Validators.required]]
 		}, { updateOn: 'blur' });
+
 
 
 		this.orderForm.valueChanges.subscribe(val => {
@@ -51,7 +54,7 @@ export class OrderComponent implements OnInit {
 
 	onSubmit() {
 		this.submitted = true;
-
+		
 		if (this.orderForm.invalid) {
 			return;
 		}
@@ -67,7 +70,10 @@ export class OrderComponent implements OnInit {
 		order.quantity = this.orderForm.value.quantity;
 		order.price = this.price;
 		this.api.sendOrder(order).subscribe(res => {
-			console.log(res);
+			if (res != null) {
+				this.router.navigate(["track"], { queryParams: { orderNumber: res, phone: order.phone } });
+			}
+			
 		});
 	}
 
@@ -81,21 +87,21 @@ class PizzaOptions {
 	toppings = new Array<PizzaElement>(); 
 }
 
-class PizzaElement {
+export class PizzaElement {
 	id: string;
 	description: string;
 	unitPrice: number;
 }
 
-class Order {
+export class Order {
 	orderNumber: number;
 	name: string;
 	phone: string;
 	time: string;
-	size: PizzaElement;
-	sauce: PizzaElement;
-	cheese: PizzaElement;
-	topping: PizzaElement;
+	size: PizzaElement = new PizzaElement();
+	sauce: PizzaElement = new PizzaElement();
+	cheese: PizzaElement = new PizzaElement();
+	topping: PizzaElement = new PizzaElement();
 	quantity: number;
 	price: number;
 }

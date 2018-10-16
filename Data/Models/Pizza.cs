@@ -27,10 +27,10 @@ namespace PizzAPIe.Data.Models
         public string Name { get; set; }
         public string Phone { get; set; }
         public DateTime Time { get; set; }
-        public Size Size { get; set; }
-        public Sauce Sauce { get; set; }
-        public Cheese Cheese { get; set; }
-        public Topping Topping { get; set; }
+        public Size Size { get; set; } = new Size();
+        public Sauce Sauce { get; set; } = new Sauce();
+        public Cheese Cheese { get; set; } = new Cheese();
+        public Topping Topping { get; set; } = new Topping();
         public int Quantity { get; set; }
         public double Price { get; set; }
     }

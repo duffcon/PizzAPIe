@@ -10,8 +10,8 @@ using PizzAPIe.Data.Models;
 namespace PizzAPIe.Migrations
 {
     [DbContext(typeof(PizzaContext))]
-    [Migration("20181016061732_init")]
-    partial class init
+    [Migration("20181016184245_2")]
+    partial class _2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace PizzAPIe.Data.Models
 {
@@ -30,20 +31,29 @@ namespace PizzAPIe.Data.Models
             }
 
         }
-        public bool NewOrder(Order order)
+        public int? NewOrder(Order order)
         {
             pizzaContext.AttachRange(order.Size, order.Sauce,
                 order.Cheese, order.Topping);
 
             pizzaContext.Orders.Add(order);
             int rows = pizzaContext.SaveChanges();
-            return (rows == 1) ? true : false; 
+            if (rows == 1) {
+                return order.OrderNumber;
+            } else {
+                return null;
+            }
         }
         public Order GetOrder(int orderNumber, string phone)
         {
-            var query = (from s in pizzaContext.Orders
-                         where s.OrderNumber == orderNumber
-                         select s).FirstOrDefault();
+            var query = pizzaContext.Orders
+                    .Where(o => o.OrderNumber == orderNumber)
+                    .Include(o => o.Size)
+                    .Include(o => o.Sauce)
+                    .Include(o => o.Cheese)
+                    .Include(o => o.Topping)
+                    .FirstOrDefault();
+
             if (query != null && query.Phone == phone)
             {
                 return query;

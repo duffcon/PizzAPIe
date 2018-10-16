@@ -42,7 +42,18 @@ namespace PizzAPIe.Data.Models
                     new Topping { ID = "Chives", Description = "That chopped tiny green stuff.", UnitPrice = 1.0 }
                 );
                 context.SaveChanges();
+                
             }
+            var size = new Size { ID = "Small" };
+            var sauce = new Sauce { ID = "Tomato" };
+            var cheese = new Cheese { ID = "Feta" };
+            var topping = new Topping { ID = "Pepperoni" };
+            context.AttachRange(size, sauce, cheese, topping);
+
+            foreach (var o in context.Orders)
+                context.Orders.Remove(o);
+            context.Orders.Add(new Order { OrderNumber = 1, Name = "John Smith", Phone = "555-555-5555", Size =size, Sauce = sauce, Cheese = cheese, Topping = topping, Quantity=2, Price=25.11 });
+            context.SaveChanges();
         }
     }
 }

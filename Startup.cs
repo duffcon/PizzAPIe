@@ -31,8 +31,8 @@ namespace PizzAPIe
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<PizzaContext>
-                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PizzaContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IPizzaService, PizzaService>();
             services.AddMvc();
 
