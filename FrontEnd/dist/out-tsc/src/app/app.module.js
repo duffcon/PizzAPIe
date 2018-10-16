@@ -1,0 +1,50 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from './api.service';
+import { AppComponent } from './app.component';
+import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
+import { OrderComponent } from './order/order.component';
+import { TrackComponent } from './track/track.component';
+var appRoutes = [
+    { path: 'home', component: HomeComponent },
+    { path: 'order', component: OrderComponent },
+    { path: 'track', component: TrackComponent },
+    { path: '**', component: HomeComponent }
+];
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        NgModule({
+            declarations: [
+                AppComponent,
+                NavComponent,
+                HomeComponent,
+                OrderComponent,
+                TrackComponent
+            ],
+            imports: [
+                BrowserModule,
+                HttpClientModule,
+                RouterModule.forRoot(appRoutes),
+                FormsModule,
+                ReactiveFormsModule
+            ],
+            providers: [ApiService],
+            bootstrap: [AppComponent]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+export { AppModule };
+//# sourceMappingURL=app.module.js.map
