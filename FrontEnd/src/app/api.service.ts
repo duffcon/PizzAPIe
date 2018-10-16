@@ -18,8 +18,8 @@ export class ApiService {
 		return this.http.get(this.BASE_URL + "/api/Order/Options");
 	}
 
-	sendOrder() {
-		return this.http.post(this.BASE_URL + "/api/Order/New", {});
+	sendOrder(order) {
+		return this.http.post(this.BASE_URL + "/api/Order/New", order);
 	}
  
 }

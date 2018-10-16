@@ -34,4 +34,11 @@ namespace PizzAPIe.Data.Models
         public int Quantity { get; set; }
         public double Price { get; set; }
     }
+    public class PizzaOptions
+    {
+        public List<Size> Sizes { get; set; }
+        public List<Sauce> Sauces { get; set; }
+        public List<Cheese> Cheeses { get; set; }
+        public List<Topping> Toppings { get; set; }
+    }
 }

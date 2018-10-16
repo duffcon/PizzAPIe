@@ -43,10 +43,6 @@ namespace PizzAPIe.Data.Models
                 );
                 context.SaveChanges();
             }
-            var s = new Size { ID = "Large" };
-            context.Entry(s).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
-            context.Orders.Add(new Order { Name = "john", Phone = "555-555-5555", Size = s, Quantity = 1 });
-            context.SaveChanges();
         }
     }
 }

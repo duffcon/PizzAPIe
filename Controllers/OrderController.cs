@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PizzAPIe.Data.interfaces;
 using PizzAPIe.Data.Models;
 
 namespace PizzAPIe.Controllers
@@ -12,29 +13,26 @@ namespace PizzAPIe.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        public IPizzaService pizzaService;
+
+        public OrderController(IPizzaService _pizzaService)
+        {
+            pizzaService = _pizzaService;
+        }
 
         // GET: api/Order/Options
         [HttpGet("Options")]
-        public IEnumerable<PizzaElement> GetOptions()
+        public PizzaOptions GetOptions()
         {
-            var options = new List<Topping> {
-                new Topping { ID = "Pepperoni", Description = "You know what pepperoni is.", UnitPrice = 3.0 },
-                new Topping { ID = "Green Peppers", Description = "Like a green red peppers.", UnitPrice = 2.0 },
-                new Topping { ID = "Mushrooms", Description = "Straight from the ground (but washed).", UnitPrice = 2.0 },
-                new Topping { ID = "Olives", Description = "Pick ripe from the jar.", UnitPrice = 2.0 },
-                new Topping { ID = "Chives", Description = "That chopped tiny green stuff.", UnitPrice = 1.0 }
-            };
-            return options;
+            return pizzaService.GetOptions;
         }
 
 
         // Post: api/Order/New
         [HttpPost("New")]
-        public int Post([FromBody] Order order)
+        public bool Post([FromBody] Order order)
         {
-            //Fake order number
-            return 1037;
-
+            return pizzaService.NewOrder(order);
         }
     }
 }

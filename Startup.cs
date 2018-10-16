@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PizzAPIe.Data.interfaces;
 using PizzAPIe.Data.Models;
 
 namespace PizzAPIe
@@ -32,7 +33,7 @@ namespace PizzAPIe
 
             services.AddDbContext<PizzaContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddTransient<IPizzaService, PizzaService>();
             services.AddMvc();
 
             services.AddCors(options => options.AddPolicy("Cors", builder =>
