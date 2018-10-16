@@ -23,7 +23,6 @@ namespace PizzAPIe.Data.Models
         public Sauce Sauce { get; set; } 
         public Cheese Cheese { get; set; }
         public Topping Topping { get; set; } 
-        public int Quantity { get; set; }
     }
 
     public class Order
@@ -32,7 +31,8 @@ namespace PizzAPIe.Data.Models
         public string Name { get; set; } 
         public string Phone { get; set; }
         public DateTime Time { get; set; }
-        public Pizza Pizza { get; set; } 
+        public Pizza Pizza { get; set; }
+        public int Quantity { get; set; }
         public double Price { get; set; }
     }
 
