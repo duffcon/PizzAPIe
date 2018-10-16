@@ -9,11 +9,12 @@ namespace PizzAPIe.Data.Models
 {
     public class PizzaElement
     {
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Name { get; set; }
+        [Key]
+        public string ID { get; set; }
         public string Description { get; set; }
         public double UnitPrice { get; set; }
+
     }
     public class Size : PizzaElement { }
     public class Sauce : PizzaElement { }
@@ -22,7 +23,7 @@ namespace PizzAPIe.Data.Models
 
     public class Order
     {
-        public int Number { get; set; }
+        public int OrderNumber { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public DateTime Time { get; set; }

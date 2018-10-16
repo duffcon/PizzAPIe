@@ -13,16 +13,15 @@ namespace PizzAPIe.Data.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>()
+                .HasKey(o => o.OrderNumber);
 
             modelBuilder.HasSequence<int>("NextOrderNumber", schema: "dbo")
                 .StartsAt(1000)
                 .IncrementsBy(2);
 
             modelBuilder.Entity<Order>()
-                .HasKey(p => p.Number);
-
-            modelBuilder.Entity<Order>()
-                .Property(o => o.Number)
+                .Property(o => o.OrderNumber)
                 .HasDefaultValueSql("NEXT VALUE FOR dbo.NextOrderNumber");
         }
 

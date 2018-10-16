@@ -18,11 +18,11 @@ namespace PizzAPIe.Controllers
         public IEnumerable<PizzaElement> GetOptions()
         {
             var options = new List<Topping> {
-                new Topping { Name = "Pepperoni", Description = "You know what pepperoni is.", UnitPrice = 3.0 },
-                new Topping { Name = "Green Peppers", Description = "Like a green red peppers.", UnitPrice = 2.0 },
-                new Topping { Name = "Mushrooms", Description = "Straight from the ground (but washed).", UnitPrice = 2.0 },
-                new Topping { Name = "Olives", Description = "Pick ripe from the jar.", UnitPrice = 2.0 },
-                new Topping { Name = "Chives", Description = "That chopped tiny green stuff.", UnitPrice = 1.0 }
+                new Topping { ID = "Pepperoni", Description = "You know what pepperoni is.", UnitPrice = 3.0 },
+                new Topping { ID = "Green Peppers", Description = "Like a green red peppers.", UnitPrice = 2.0 },
+                new Topping { ID = "Mushrooms", Description = "Straight from the ground (but washed).", UnitPrice = 2.0 },
+                new Topping { ID = "Olives", Description = "Pick ripe from the jar.", UnitPrice = 2.0 },
+                new Topping { ID = "Chives", Description = "That chopped tiny green stuff.", UnitPrice = 1.0 }
             };
             return options;
         }

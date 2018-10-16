@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -29,7 +30,20 @@ export class OrderComponent implements OnInit {
 
 
 class PizzaElement {
-	name: string;
-	description: string;
-	unitPrice: number;
+	Name: string;
+	Description: string;
+	UnitPrice: number;
+}
+
+class Order {
+	OrderNumber: number;
+	Name: string;
+	Phone: string;
+	Time: Date;
+	Size: PizzaElement;
+	Sauce: PizzaElement;
+	Cheese: PizzaElement;
+	Topping: PizzaElement;
+	Quantity: number;
+	Price: number;
 }
