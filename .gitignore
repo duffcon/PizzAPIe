@@ -13,7 +13,7 @@ FrontEnd/dist/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+s
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

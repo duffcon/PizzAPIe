@@ -11,11 +11,16 @@ namespace PizzAPIe.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        public class Message
+        {
+            public string Heading { get; set; }
+            public string SubHeading { get; set; }
+        }
         // GET: api/Home
         [HttpGet]
-        public string Get()
+        public Message Get()
         {
-            return "Home Page";
+            return new Message { Heading = "Welcome to PizzAPIe", SubHeading = "The Very Best"};
         }
     }
 }

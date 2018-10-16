@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-order',
@@ -6,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+	private options = new Array<PizzaElement>();
+	private orderNumber = null;
 
-  constructor() { }
+	constructor(private api: ApiService) {
+		this.api.getPizzaOptions().subscribe(res => {
+			this.options = res as Array<PizzaElement>;
+		});
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
+	onSubmit() {
+		this.api.sendOrder().subscribe(res => {
+			this.orderNumber = res as number;
+		})
+	}
+
+}
+
+
+class PizzaElement {
+	name: string;
+	description: string;
+	unitPrice: number;
 }
