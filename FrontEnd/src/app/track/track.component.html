@@ -1,0 +1,100 @@
+<div class="container-fluid">
+	<div *ngIf="!orderFound" class="row justify-content-center">
+
+		<div class="col-*m-4">
+			<form [formGroup]="trackerForm">
+
+				<div style="text-align: center;">
+					<span style="font-size: 20px; font-family: sans-serif;">
+						<strong> Dude where's my order: </strong>
+					</span>
+					
+				</div>
+
+
+				<div class="form-group input-group">
+					<div class="input-group-prepend"> <span class="input-group-text">Order #</span></div>
+					<input type="text" formControlName="ordernumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ordernumber.errors }" />
+					<div *ngIf="submitted && f.ordernumber.errors" class="invalid-feedback">
+						<div *ngIf="f.ordernumber.errors.required">Field required.</div>
+					</div>
+				</div>
+
+
+				<div class="input-group form-group">
+					<div class="input-group-prepend"> <span class="input-group-text">Phone #</span></div>
+					<input type="tel" formControlName="phone" placeholder="123-123-1234" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+					<div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+						<div *ngIf="f.phone.errors.required">Field required.</div>
+						<div *ngIf="f.phone.errors.minlength || f.phone.errors.maxlength">Format: 123-123-1234</div>
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-secondary" (click)="onSubmit()">Track</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<div *ngIf="orderFound" class="row justify-content-center">
+
+		<div class="row justify-content-center">
+			<div class=" col-m-1">
+
+				<div style="text-align: center;">
+					<span style="font-size: 20px; font-family: sans-serif;">
+						<strong> Your Order, {{order.name}}: </strong>
+					</span>
+				</div>
+				<table class="table">
+
+					<br />
+					<tr>
+						<td>Order #:</td>
+						<td>{{order.orderNumber}}</td>
+					</tr>
+					
+					<tr>
+						<td>Order Time:</td>
+						<td>{{order.time | date:'h:mm MM/dd/yyyy' }}</td>
+					</tr>
+
+					<tr>
+						<td>Phone:</td>
+						<td>{{order.phone}}</td>
+					</tr>
+
+					<tr>
+						<td>Size:</td>
+						<td>{{order.size.id}}</td>
+					</tr>
+
+					<tr>
+						<td>Sauce:</td>
+						<td>{{order.sauce.id}}</td>
+					</tr>
+
+					<tr>
+						<td>Cheese:</td>
+						<td>{{order.cheese.id}}</td>
+					</tr>
+
+					<tr>
+						<td>Topping:</td>
+						<td>{{order.topping.id}}</td>
+					</tr>
+					<tr>
+						<td>Quantity:</td>
+						<td>{{order.quantity}}</td>
+					</tr>
+
+
+				</table>
+			</div>
+		</div>
+
+		</div>
+
+</div>
