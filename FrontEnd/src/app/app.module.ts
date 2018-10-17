@@ -19,7 +19,6 @@ const appRoutes: Routes =
     { path: 'home', component: HomeComponent },
 	{ path: 'order', component: OrderComponent },
 	{ path: 'track', component: TrackComponent },
-
     { path: '**', component: HomeComponent }
   ];
 

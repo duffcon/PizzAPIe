@@ -64,7 +64,7 @@ var OrderComponent = /** @class */ (function () {
         order.price = this.price;
         this.api.sendOrder(order).subscribe(function (res) {
             if (res != null) {
-                _this.router.navigate(["track"], { queryParams: { orderNumber: order.orderNumber, phone: order.phone } });
+                _this.router.navigate(["track"], { queryParams: { orderNumber: res, phone: order.phone } });
             }
         });
     };

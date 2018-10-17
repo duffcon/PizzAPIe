@@ -21,7 +21,7 @@ export class TrackComponent implements OnInit {
 	ngOnInit() {
 		
 		var p = this.route.queryParams.subscribe(val => {
-			if (val != null) {
+			if (val.hasOwnProperty("orderNumber")) {
 				var outOrder = new Order();
 				outOrder.orderNumber = val.orderNumber;
 				outOrder.phone = val.phone;
@@ -32,6 +32,9 @@ export class TrackComponent implements OnInit {
 					}
 				});
 				return;
+			}
+			else {
+				this.orderFound = false;
 			}
 		});
 
@@ -46,8 +49,8 @@ export class TrackComponent implements OnInit {
 	onSubmit() {
 		this.submitted = true;
 
+
 		if (this.trackerForm.invalid) {
-			
 			return;
 		}
 		var outOrder = new Order();
@@ -60,8 +63,7 @@ export class TrackComponent implements OnInit {
 				this.order = res as Order;
 			}
 			else {
-				this.trackerForm.controls.ordernumber.setErrors({ 'incorrect': true });
-				this.trackerForm.controls.phone.setErrors({ 'incorrect': true });
+
 			}
 		});
 

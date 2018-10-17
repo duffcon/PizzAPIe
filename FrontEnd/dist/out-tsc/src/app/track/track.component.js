@@ -11,13 +11,12 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { Order } from '../order/order.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 var TrackComponent = /** @class */ (function () {
-    function TrackComponent(formBuilder, api, route, router) {
+    function TrackComponent(formBuilder, api, route) {
         this.formBuilder = formBuilder;
         this.api = api;
         this.route = route;
-        this.router = router;
         this.submitted = false;
         this.orderFound = false;
         this.order = new Order();
@@ -25,7 +24,8 @@ var TrackComponent = /** @class */ (function () {
     TrackComponent.prototype.ngOnInit = function () {
         var _this = this;
         var p = this.route.queryParams.subscribe(function (val) {
-            if (val != null) {
+            console.log(val);
+            if (val.hasOwnProperty("orderNumber")) {
                 var outOrder = new Order();
                 outOrder.orderNumber = val.orderNumber;
                 outOrder.phone = val.phone;
@@ -51,6 +51,8 @@ var TrackComponent = /** @class */ (function () {
     TrackComponent.prototype.onSubmit = function () {
         var _this = this;
         this.submitted = true;
+        this.trackerForm.controls.ordernumber.setErrors({ 'incorrect': false });
+        this.trackerForm.controls.phone.setErrors({ 'incorrect': false });
         if (this.trackerForm.invalid) {
             return;
         }
@@ -62,6 +64,10 @@ var TrackComponent = /** @class */ (function () {
                 _this.orderFound = true;
                 _this.order = res;
             }
+            else {
+                _this.trackerForm.controls.ordernumber.setErrors({ 'incorrect': true });
+                _this.trackerForm.controls.phone.setErrors({ 'incorrect': true });
+            }
         });
     };
     TrackComponent = __decorate([
@@ -70,7 +76,7 @@ var TrackComponent = /** @class */ (function () {
             templateUrl: './track.component.html',
             styleUrls: ['./track.component.css']
         }),
-        __metadata("design:paramtypes", [FormBuilder, ApiService, ActivatedRoute, Router])
+        __metadata("design:paramtypes", [FormBuilder, ApiService, ActivatedRoute])
     ], TrackComponent);
     return TrackComponent;
 }());
